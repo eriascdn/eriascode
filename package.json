@@ -12,5 +12,10 @@
   "license": "MIT",
   "devDependencies": {
     "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "cloudworker-router": "^2.0.5",
+    "hono": "^1.2.1",
+    "itty-router": "^2.6.1"
   }
 }
