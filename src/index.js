@@ -1,12 +1,16 @@
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+import { Router } from 'itty-router'
+
+const router = Router()
+
+router.get('/*', () => {
+  return new Response(
+    'Hello, world! This is the root page of your Worker template.',
+  )
 })
-/**
- * Respond with hello worker text
- * @param {Request} request
- */
-async function handleRequest(request) {
-  return new Response('Hello worker!', {
-    headers: { 'content-type': 'text/plain' },
-  })
-}
+
+router.all('*', () => new Response('404, not found!', { status: 404 }))
+
+
+addEventListener('fetch', (e) => {
+  e.respondWith(router.handle(e.request))
+})
